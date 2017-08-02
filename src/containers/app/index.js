@@ -1,7 +1,7 @@
 // react
 import React from 'react';
 // we need route and link
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from '../home';
 
 // const app
@@ -14,10 +14,6 @@ import Home from '../home';
 // route exact path, /aoubt-us, component={}
 const App = () => (
   <div>
-    <header>
-      <Link to="/">Home</Link>
-    </header>
-
     <main>
       <Route exact path="/" component={Home} />
     </main>

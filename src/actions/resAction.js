@@ -28,7 +28,7 @@ export function nexting(bool) {
     //
     type: NEXTING,
     //
-    initLoading: bool
+    nexting: bool
   };
 }
 
@@ -101,10 +101,13 @@ export function getARestaurant() {
       })
       .then((response) => response.json()) // now we get response
       .then((res) => {
-        console.log('-- res --');
-        console.log(res);
+        //console.log('-- res --');
+        //console.log(res);
         dispatch(getAllResGood(res));
       })
-      .catch(() => dispatch());
+      .catch((err) => {
+        console.log('-- fetch error --');
+        console.log(err);
+      });
     };
 }

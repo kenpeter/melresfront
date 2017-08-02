@@ -8,6 +8,7 @@ import {
 from
 '../actions/constant';
 
+/*
 const initialState = {
   restaurants: [],
   initLoading: false,
@@ -15,28 +16,25 @@ const initialState = {
   voteDown: false,
   voteUp: false
 };
+*/
 
-// init loading
-export function initLoading(state = initialState, action) {
+// This is the listener + also use in component
+// state matches individual attr
+// action contains action.type, action.attr
+export function initLoading(state = false, action) {
   switch (action.type) {
     case INIT_LOADING:
-      return {
-        ...state,
-        initLoading: true
-      }
+      return action.initLoading;
     default:
       //
       return state;
   }
 };
 
-export function getAllResGood(state = initialState, action) {
+export function getAllResGood(state = [], action) {
   switch (action.type) {
     case GET_ALL_RES_GOOD:
-      return {
-        ...state,
-        res: action.res
-      }
+      return action.res.restaurants;
     default:
       //
       return state;
@@ -44,13 +42,10 @@ export function getAllResGood(state = initialState, action) {
 };
 
 //
-export function nexting(state = initialState, action) {
+export function nexting(state = false, action) {
   switch (action.type) {
     case NEXTING:
-      return {
-        ...state,
-        nexting: true
-      }
+      return action.nexting;
     default:
       //
       return state;

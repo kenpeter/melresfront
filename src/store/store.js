@@ -17,15 +17,17 @@ export const history = createHistory();
 
 // app init state
 const initialState = {};
+
 // what is enhancers? e.g. array of dev tools, other tools.
 const enhancers = [];
+
 // now array of middle ware
 const middleware = [
   // async
   thunk,
   // redux-router with history
   routerMiddleware(history)
-]
+];
 
 // if dev
 if (process.env.NODE_ENV === 'development') {
