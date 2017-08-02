@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 // the modules has routerReducer + other reducers.
 // Now allReducers all passed into store
-import rootReducer from './modules';
+import rootReducer from '../reducers';
 
 // we need to export browser history.
 export const history = createHistory();

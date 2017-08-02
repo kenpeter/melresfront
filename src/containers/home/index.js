@@ -1,39 +1,50 @@
 // react
-import React from 'react';
+import React, { Component } from 'react';
 // push in naviate inside the store
 //import { push } from 'react-router-redux';
 // bind action creators is like dispatching
-import { bindActionCreators } from 'redux';
+import { } from 'redux';
 
 // connect, normally conenct attributes and methods.
 import { connect } from 'react-redux';
 
 //
 import {
-  dumpaction
-} from '../../modules/myaction';
+  getARestaurant
+} from '../../actions/resAction';
 
-const Home = props => (
-  <div>
-    <h1>Home</h1>
-    <p>
-      <button onClick={props.dumpaction}>dumpaction</button>
-    </p>
-  </div>
-)
+class Home extends Component {
+  componentDidMount() {
+    this.props.fetchData();
+  }
 
-//
-const mapStateToProps = state => ({
+  render() {
+    // loading
+    if (this.props.initLoading) {
+      return <p>Loading....</p>;
+    }
 
-});
+    return (
+      <div>
+        <h1>Home</h1>
+      </div>
+    );
+  }
+}
 
-//
-const mapDispatchToProps = dispatch => bindActionCreators({
-  dumpaction
-}, dispatch);
 
-//
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+const mapStateToProps = (state) => {
+  return {
+
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: () => {
+      dispatch(getARestaurant());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

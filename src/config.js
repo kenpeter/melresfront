@@ -1,6 +1,8 @@
-export default const config = {
+const config = {
   backendRootUrl: 'http://melresback.local',
-  backendResDataUrl: 'http://melresback.local/api/restaurant',
+  backendSingleResDataUrl: 'http://melresback.local/api/restaurant',
   backendAuthUrl: 'http://melresback.local/api/auth',
   backendUsername: 'kenpeter'
 };
+
+module.exports = config;

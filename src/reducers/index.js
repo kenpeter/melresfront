@@ -6,11 +6,17 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 // we can jam more reducers into the combined reducers.
-import myaction from './myaction';
+import {
+  initLoading,
+  getAllResGood,
+  nexting
+} from './resReducers';
 
 // export combined reducers
 // does it mean routerReducers + other reducers.
 export default combineReducers({
   router: routerReducer,
-  myaction
-})
+  initLoading,
+  getAllResGood,
+  nexting
+});

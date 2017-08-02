@@ -1,30 +1,16 @@
-// react
+// R
 import React from 'react';
-// render dom
+// display dowm
 import { render } from 'react-dom';
 // provider allows childrent component accesses this.context
 import { Provider } from 'react-redux';
 
-/*
-// You can see router, connects to history, state, and it is in store.
-const store = createStore(
-  connectRouter(history)(rootReducer), // new root reducer with router state
-  initialState,
-  compose(
-    applyMiddleware(
-      routerMiddleware(history), // for dispatching history actions
-      // ... other middlewares ...
-    ),
-  ),
-)
-
-*/
 // router that connect react router, redux
 import { ConnectedRouter } from 'react-router-redux';
 
 // history is from createHistory locally.
 // store is from createStore locally.
-import store, { history } from './store';
+import store, { history } from './store/store';
 
 // the main application
 import App from './containers/app';
