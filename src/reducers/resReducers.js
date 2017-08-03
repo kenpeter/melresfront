@@ -3,7 +3,7 @@ import {
   GET_ALL_RES_GOOD,
   NEXTING,
   //VOTE_DOWN,
-  //VOTE_UP,
+  //VOTE_UP
 }
 from
 '../actions/constant';

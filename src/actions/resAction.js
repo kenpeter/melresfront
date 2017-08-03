@@ -3,7 +3,7 @@ import {
   GET_ALL_RES_GOOD,
   NEXTING,
   //VOTE_DOWN,
-  //VOTE_UP,
+  //VOTE_UP
 }
 from
 '../actions/constant';
@@ -19,7 +19,7 @@ export function intLoading(bool) {
     //
     initLoading: bool
   };
-}
+};
 
 //
 export function nexting(bool) {
@@ -30,14 +30,16 @@ export function nexting(bool) {
     //
     nexting: bool
   };
-}
+};
 
 export function getAllResGood(res) {
   return {
     type: GET_ALL_RES_GOOD,
     res
   };
-}
+};
+
+
 
 //
 export function getToken(url) {
@@ -65,7 +67,7 @@ export function getToken(url) {
       reject(err);
     })
   });
-}
+};
 
 export function getARestaurant() {
   //
@@ -74,6 +76,56 @@ export function getARestaurant() {
     dispatch(intLoading(true));
 
     const accessToken = await getToken(config.backendAuthUrl);
+    const localUrl = config.backendRootUrl + `/api/restaurant?token=${accessToken}`;
+
+    //
+    sessionStorage.setItem('resToken', accessToken);
+
+    fetch(localUrl)
+      .then(response => {
+        // not ok
+        if (!response.ok) {
+          if(response.status === 403) {
+            // access denied, get token first
+            console.log('-- 403, need to get token --');
+            return;
+          }
+
+          // throw error
+          console.log('throw error');
+          throw Error(response.statusText);
+        }
+
+        // else not loading
+        dispatch(intLoading(false));
+
+        //console.log('-- res --');
+        //console.log(response.json());
+
+        return response;
+      })
+      .then((response) => response.json()) // now we get response
+      .then((res) => {
+        //console.log('-- res --');
+        //console.log(res);
+        dispatch(getAllResGood(res));
+      })
+      .catch((err) => {
+        console.log('-- fetch error --');
+        console.log(err);
+      });
+    };
+};
+
+
+export function getARestaurantWithToken() {
+  //
+  return async (dispatch) => {
+    // it is loading
+    dispatch(intLoading(true));
+
+    //
+    const accessToken = sessionStorage.getItem('resToken');
     const localUrl = config.backendRootUrl + `/api/restaurant?token=${accessToken}`;
 
     fetch(localUrl)
@@ -110,4 +162,9 @@ export function getARestaurant() {
         console.log(err);
       });
     };
-}
+};
+
+
+export function voteUp() {
+  console.log('vote up');
+};
