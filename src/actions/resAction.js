@@ -2,15 +2,14 @@ import {
   INIT_LOADING,
   GET_ALL_RES_GOOD,
   NEXTING,
-  //VOTE_DOWN,
-  //VOTE_UP
+  VOTING_DOWN,
+  VOTING_UP
 }
 from
 '../actions/constant';
 
 const config = require('../config');
 
-//
 export function intLoading(bool) {
   //
   return {
@@ -21,7 +20,6 @@ export function intLoading(bool) {
   };
 };
 
-//
 export function nexting(bool) {
   //
   return {
@@ -29,6 +27,20 @@ export function nexting(bool) {
     type: NEXTING,
     //
     nexting: bool
+  };
+};
+
+export function votingUp(bool) {
+  return {
+    type: VOTING_UP,
+    votingUp: bool
+  };
+};
+
+export function votingDown(bool) {
+  return {
+    type: VOTING_DOWN,
+    votingDown: bool
   };
 };
 
@@ -164,7 +176,36 @@ export function getARestaurantWithToken() {
     };
 };
 
-
+//
 export function voteUp() {
-  console.log('vote up');
+  console.log('-- not working??? --');
+
+  return (dispatch) => {
+
+    //test
+    console.log('-- ready to work ? --');
+
+    const accessToken = sessionStorage.getItem('resToken');
+    const localUrl = config.backendRootUrl + `/api/voteUp?token=${accessToken}`;
+
+    //test
+    console.log('-- dispatch vote up true --');
+    dispatch(votingUp(true));
+
+    fetch(localUrl)
+      .then(response => {
+        if (!response.ok) {
+          // throw error
+          console.log('voteUp throw error');
+          throw Error(response.statusText);
+        }
+
+        console.log('-- dispatch vote up false --');
+        dispatch(votingUp(false));
+      })
+      .catch((err) => {
+        console.log('-- vote up error --');
+        console.log(err);
+      });
+  };
 };

@@ -2,8 +2,8 @@ import {
   INIT_LOADING,
   GET_ALL_RES_GOOD,
   NEXTING,
-  //VOTE_DOWN,
-  //VOTE_UP
+  VOTING_DOWN,
+  VOTING_UP
 }
 from
 '../actions/constant';
@@ -41,11 +41,30 @@ export function getAllResGood(state = [], action) {
   }
 };
 
-//
 export function nexting(state = false, action) {
   switch (action.type) {
     case NEXTING:
       return action.nexting;
+    default:
+      //
+      return state;
+  }
+};
+
+export function votingUp(state = false, action) {
+  switch (action.type) {
+    case VOTING_UP:
+      return action.votingUp;
+    default:
+      //
+      return state;
+  }
+};
+
+export function votingDown(state = false, action) {
+  switch (action.type) {
+    case VOTING_DOWN:
+      return action.votingDown;
     default:
       //
       return state;
