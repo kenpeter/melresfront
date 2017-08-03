@@ -43,12 +43,9 @@ class Home extends Component {
               <p className="card-text">Average cost for 2: ${ res.averageCostForTwo }</p>
               <p className="card-text">{ res.address }, <a target="_blank" href={ res.menuUrl }>Menu</a></p>
 
-              <div className="btn-group btn-group-lg" role="group" aria-label="vote">
-                <button type="button" className="btn btn-success">Up</button>
-                <button type="button" className="btn btn-danger">Down</button>
-              </div>
-              <br/><br/>
               <button type="button" className="btn btn-primary btn-lg btn-block">Next</button>
+              <button type="button" className="btn btn-success btn-lg btn-block">Up</button>
+              <button type="button" className="btn btn-danger btn-lg btn-block">Down</button>
             </div>
           </div>
         );
