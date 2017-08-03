@@ -29,15 +29,26 @@ class Home extends Component {
     else {
       const resDisplayFunc = () => {
         const res = this.props.restaurants;
+        console.log(res);
         return (
           <div className="card" key={ res._id }>
-            <div className="card-header">
-              &nbsp;
+            <div className="card-header text-center">
+              Restaurant Rotator
             </div>
-            <div className="card-block">
-              <h4 className="card-title">bla</h4>
-              <p className="card-text">bla</p>
-              <a href='http://google.com' className="btn btn-primary">Go</a>
+            <div className="card-block text-center">
+              <h4 className="card-title">{ res.name }</h4>
+              <a href={ res.url } target="_blank">
+                <img src={ res.thumbUrl } width='250' height='250' alt="img"/>
+              </a>
+              <p className="card-text">Average cost for 2: ${ res.averageCostForTwo }</p>
+              <p className="card-text">{ res.address }, <a target="_blank" href={ res.menuUrl }>Menu</a></p>
+
+              <div className="btn-group btn-group-lg" role="group" aria-label="vote">
+                <button type="button" className="btn btn-success">Up</button>
+                <button type="button" className="btn btn-danger">Down</button>
+              </div>
+              <br/><br/>
+              <button type="button" className="btn btn-primary btn-lg btn-block">Next</button>
             </div>
           </div>
         );
