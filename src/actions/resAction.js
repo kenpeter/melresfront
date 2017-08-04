@@ -177,22 +177,29 @@ export function getARestaurantWithToken() {
 };
 
 //
-export function voteUp() {
-  console.log('-- not working??? --');
-
+export function voteUp(resId, countNum) {
+  //console.log('-- not working??? --');
   return (dispatch) => {
-
     //test
-    console.log('-- ready to work ? --');
-
+    //console.log('-- ready to work ? --');
     const accessToken = sessionStorage.getItem('resToken');
     const localUrl = config.backendRootUrl + `/api/voteUp?token=${accessToken}`;
 
     //test
-    console.log('-- dispatch vote up true --');
+    //console.log('-- dispatch vote up true --');
     dispatch(votingUp(true));
 
-    fetch(localUrl)
+    const dataUri = `resId=${resId}&countNum=${countNum}`;
+    //test
+    console.log('-- dataUri --');
+    console.log(dataUri);
+
+    fetch(localUrl, {
+      method: 'POST',
+      // this line is important, if this content-type is not set it wont work
+      headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+      body: dataUri
+    })
       .then(response => {
         if (!response.ok) {
           // throw error
@@ -200,7 +207,7 @@ export function voteUp() {
           throw Error(response.statusText);
         }
 
-        console.log('-- dispatch vote up false --');
+        //console.log('-- dispatch vote up false --');
         dispatch(votingUp(false));
       })
       .catch((err) => {

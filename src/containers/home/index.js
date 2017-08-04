@@ -46,8 +46,11 @@ class Home extends Component {
               <p className="card-text">{ res.address }, <a target="_blank" href={ res.menuUrl }>Menu</a></p>
 
               <button onClick={ this.props.moveNext } type="button" className="btn btn-primary btn-lg btn-block">Next</button>
-              <button disabled={ this.props.votingUp } onClick={ this.props.voteUp } type="button" className="btn btn-success btn-lg btn-block">Up (12)</button>
+              <button disabled={ this.props.votingUp } onClick={ () => this.props.voteUp(res._id, 1) } type="button" className="btn btn-success btn-lg btn-block">Up (12)</button>
               <button onClick={ this.props.voteDown } type="button" className="btn btn-danger btn-lg btn-block">Down (4)</button>
+            </div>
+            <div className="card-footer text-center">
+              <small className="text-muted"><a rel="noopener noreferrer" href="https://au.linkedin.com/in/thegaryliang" target="_blank">Hire me</a></small>
             </div>
           </div>
         );
@@ -86,8 +89,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getARestaurantWithToken());
     },
 
-    voteUp: () => {
-      dispatch(voteUp());
+    voteUp: (resId, countNum) => {
+      dispatch(voteUp(resId, countNum));
     },
 
     voteDown: () => {
