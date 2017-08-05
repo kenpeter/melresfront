@@ -3,7 +3,9 @@ import {
   GET_ALL_RES_GOOD,
   NEXTING,
   VOTING_DOWN,
-  VOTING_UP
+
+  VOTING_UP,
+  VOTE_UP_COUNT
 }
 from
 '../actions/constant';
@@ -65,6 +67,19 @@ export function votingDown(state = false, action) {
   switch (action.type) {
     case VOTING_DOWN:
       return action.votingDown;
+    default:
+      //
+      return state;
+  }
+};
+
+export function voteUpCount(state = 0, action) {
+  switch (action.type) {
+    case VOTE_UP_COUNT:
+      //test
+      console.log('-- reducer --');
+      console.log(action);
+      return action.voteUpCount;
     default:
       //
       return state;

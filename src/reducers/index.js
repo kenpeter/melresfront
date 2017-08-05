@@ -1,11 +1,15 @@
 // combine reducers
 import { combineReducers } from 'redux';
 
-// we can jam more reducers into the combined reducers.
+// We need to register app's attributes.
 import {
   initLoading,
   getAllResGood,
-  nexting
+  nexting,
+  votingUp,
+
+  votingDown,
+  voteUpCount
 } from './resReducers';
 
 // export combined reducers
@@ -13,5 +17,9 @@ import {
 export default combineReducers({
   initLoading,
   getAllResGood,
-  nexting
+  nexting,
+  votingUp,
+
+  votingDown,
+  voteUpCount
 });

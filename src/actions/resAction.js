@@ -3,7 +3,9 @@ import {
   GET_ALL_RES_GOOD,
   NEXTING,
   VOTING_DOWN,
-  VOTING_UP
+
+  VOTING_UP,
+  VOTE_UP_COUNT
 }
 from
 '../actions/constant';
@@ -44,14 +46,19 @@ export function votingDown(bool) {
   };
 };
 
+export function voteUpCount(count) {
+  return {
+    type: VOTE_UP_COUNT,
+    voteUpCount: count
+  };
+};
+
 export function getAllResGood(res) {
   return {
     type: GET_ALL_RES_GOOD,
     res
   };
 };
-
-
 
 //
 export function getToken(url) {
@@ -108,19 +115,17 @@ export function getARestaurant() {
           throw Error(response.statusText);
         }
 
-        // else not loading
         dispatch(intLoading(false));
-
-        //console.log('-- res --');
-        //console.log(response.json());
-
         return response;
       })
       .then((response) => response.json()) // now we get response
       .then((res) => {
-        //console.log('-- res --');
-        //console.log(res);
         dispatch(getAllResGood(res));
+        // It is a single restaurant
+        const currVoteUpCount = res.restaurants.voteUpCount;
+        //console.log('-- what happen here? --');
+        //console.log(res.restaurants);
+        dispatch(voteUpCount(currVoteUpCount));
       })
       .catch((err) => {
         console.log('-- fetch error --');
@@ -129,7 +134,7 @@ export function getARestaurant() {
     };
 };
 
-
+// Used on move next
 export function getARestaurantWithToken() {
   //
   return async (dispatch) => {
@@ -168,6 +173,9 @@ export function getARestaurantWithToken() {
         //console.log('-- res --');
         //console.log(res);
         dispatch(getAllResGood(res));
+        // It is a single restaurant
+        const currVoteUpCount = res.voteUpCount;
+        dispatch(voteUpCount(currVoteUpCount));
       })
       .catch((err) => {
         console.log('-- fetch error --');
@@ -191,8 +199,8 @@ export function voteUp(resId, countNum) {
 
     const dataUri = `resId=${resId}&countNum=${countNum}`;
     //test
-    console.log('-- dataUri --');
-    console.log(dataUri);
+    //console.log('-- dataUri --');
+    //console.log(dataUri);
 
     fetch(localUrl, {
       method: 'POST',
@@ -207,8 +215,13 @@ export function voteUp(resId, countNum) {
           throw Error(response.statusText);
         }
 
-        //console.log('-- dispatch vote up false --');
+        return response.json();
+      })
+      .then((json) => {
         dispatch(votingUp(false));
+        //console.log('-- res voteupcount --');
+        //console.log(json.newCount);
+        dispatch(voteUpCount(json.newCount));
       })
       .catch((err) => {
         console.log('-- vote up error --');
