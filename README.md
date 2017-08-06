@@ -1,6 +1,6 @@
 # Intro
 
-It is a restaurant rotator in Melbourne, based on Zomato API.
+It is a restaurant rotator in Melbourne Australia, based on Zomato API. You can vote up and down for a restaurant. Press 'Next' to move to next restaurant.
 
 There are 3 repositories:
 
@@ -9,8 +9,6 @@ There are 3 repositories:
 [Back end](https://github.com/kenpeter/melresback)
 
 [Get data from API](https://github.com/kenpeter/melres)
-
-
 
 # Front-end
 * React
