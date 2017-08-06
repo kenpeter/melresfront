@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import {
   getARestaurant,
   getARestaurantWithToken,
-  voteUp
+  voteUp,
+  voteDown
 } from '../../actions/resAction';
 
 class Home extends Component {
@@ -56,14 +57,19 @@ class Home extends Component {
               </button>
 
               <button
-                onClick={ this.props.voteDown }
+                disabled={ this.props.votingDown }
+                onClick={ () => this.props.voteDown(res._id, 1) }
                 type="button"
                 className="btn btn-danger btn-lg btn-block">
-                <i className="fa fa-thumbs-down" aria-hidden="true"></i> (4)
+                <i className="fa fa-thumbs-down" aria-hidden="true"></i> ({ this.props.voteDownCount })
               </button>
             </div>
             <div className="card-footer text-center">
-              <small className="text-muted"><a rel="noopener noreferrer" href="https://au.linkedin.com/in/thegaryliang" target="_blank">Hire me</a></small>
+              <small className="text-muted">
+                <a rel="noopener noreferrer" href="https://au.linkedin.com/in/thegaryliang" target="_blank">Hire me</a>
+                &nbsp;|&nbsp;
+                <a rel="noopener noreferrer" href="https://github.com/kenpeter/melresfront" target="_blank">Source</a>
+              </small>
             </div>
           </div>
         );
@@ -93,7 +99,8 @@ const mapStateToProps = (state) => {
     restaurants: state.getAllResGood,
     votingUp: state.votingUp,
 
-    voteUpCount: state.voteUpCount
+    voteUpCount: state.voteUpCount,
+    voteDownCount: state.voteDownCount
   };
 };
 
@@ -107,8 +114,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(voteUp(resId, countNum));
     },
 
-    voteDown: () => {
-
+    voteDown: (resId, countNum) => {
+      dispatch(voteDown(resId, countNum));
     },
 
     fetchData: () => {

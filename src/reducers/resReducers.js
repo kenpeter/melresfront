@@ -5,20 +5,11 @@ import {
   VOTING_DOWN,
 
   VOTING_UP,
-  VOTE_UP_COUNT
+  VOTE_UP_COUNT,
+  VOTE_DOWN_COUNT
 }
 from
 '../actions/constant';
-
-/*
-const initialState = {
-  restaurants: [],
-  initLoading: false,
-  nexting: false,
-  voteDown: false,
-  voteUp: false
-};
-*/
 
 // This is the listener + also use in component
 // state matches individual attr
@@ -80,6 +71,19 @@ export function voteUpCount(state = 0, action) {
       //console.log('-- reducer --');
       //console.log(action);
       return action.voteUpCount;
+    default:
+      //
+      return state;
+  }
+};
+
+export function voteDownCount(state = 0, action) {
+  switch (action.type) {
+    case VOTE_DOWN_COUNT:
+      //test
+      //console.log('-- reducer --');
+      //console.log(action);
+      return action.voteDownCount;
     default:
       //
       return state;

@@ -5,7 +5,8 @@ import {
   VOTING_DOWN,
 
   VOTING_UP,
-  VOTE_UP_COUNT
+  VOTE_UP_COUNT,
+  VOTE_DOWN_COUNT
 }
 from
 '../actions/constant';
@@ -50,6 +51,13 @@ export function voteUpCount(count) {
   return {
     type: VOTE_UP_COUNT,
     voteUpCount: count
+  };
+};
+
+export function voteDownCount(count) {
+  return {
+    type: VOTE_DOWN_COUNT,
+    voteDownCount: count
   };
 };
 
@@ -123,9 +131,9 @@ export function getARestaurant() {
         dispatch(getAllResGood(res));
         // It is a single restaurant
         const currVoteUpCount = res.restaurants.voteUpCount;
-        //console.log('-- what happen here? --');
-        //console.log(res.restaurants);
         dispatch(voteUpCount(currVoteUpCount));
+        const currVoteDownCount = res.restaurants.voteDownCount;
+        dispatch(voteDownCount(currVoteDownCount));
       })
       .catch((err) => {
         console.log('-- fetch error --');
@@ -160,12 +168,7 @@ export function getARestaurantWithToken() {
           throw Error(response.statusText);
         }
 
-        // else not loading
         dispatch(intLoading(false));
-
-        //console.log('-- res --');
-        //console.log(response.json());
-
         return response;
       })
       .then((response) => response.json()) // now we get response
@@ -174,6 +177,7 @@ export function getARestaurantWithToken() {
         //console.log(res.restaurants);
         dispatch(getAllResGood(res));
         dispatch(voteUpCount(res.restaurants.voteUpCount));
+        dispatch(voteDownCount(res.restaurants.voteDownCount));
       })
       .catch((err) => {
         console.log('-- fetch error --');
@@ -223,6 +227,53 @@ export function voteUp(resId, countNum) {
       })
       .catch((err) => {
         console.log('-- vote up error --');
+        console.log(err);
+      });
+  };
+};
+
+
+//
+export function voteDown(resId, countNum) {
+  //console.log('-- not working??? --');
+  return (dispatch) => {
+    //test
+    //console.log('-- ready to work ? --');
+    const accessToken = sessionStorage.getItem('resToken');
+    const localUrl = config.backendRootUrl + `/api/voteDown?token=${accessToken}`;
+
+    //test
+    //console.log('-- dispatch vote up true --');
+    dispatch(votingDown(true));
+
+    const dataUri = `resId=${resId}&countNum=${countNum}`;
+    //test
+    //console.log('-- dataUri --');
+    //console.log(dataUri);
+
+    fetch(localUrl, {
+      method: 'POST',
+      // this line is important, if this content-type is not set it wont work
+      headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+      body: dataUri
+    })
+      .then(response => {
+        if (!response.ok) {
+          // throw error
+          console.log('voteDown throw error');
+          throw Error(response.statusText);
+        }
+
+        return response.json();
+      })
+      .then((json) => {
+        dispatch(votingDown(false));
+        //console.log('-- res voteupcount --');
+        //console.log(json.newCount);
+        dispatch(voteDownCount(json.newCount));
+      })
+      .catch((err) => {
+        console.log('-- vote down error --');
         console.log(err);
       });
   };

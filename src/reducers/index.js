@@ -9,7 +9,8 @@ import {
   votingUp,
 
   votingDown,
-  voteUpCount
+  voteUpCount,
+  voteDownCount
 } from './resReducers';
 
 // export combined reducers
@@ -21,5 +22,6 @@ export default combineReducers({
   votingUp,
 
   votingDown,
-  voteUpCount
+  voteUpCount,
+  voteDownCount
 });
