@@ -29,7 +29,7 @@ class Home extends Component {
         const res = this.props.restaurants;
         //console.log(res);
         return (
-          <div className="card" key={ res._id }>
+          <div className="card" key={ res.resId }>
             <div className="card-header text-center">
               Restaurant Rotator
             </div>
@@ -50,7 +50,7 @@ class Home extends Component {
 
               <button
                 disabled={ this.props.votingUp }
-                onClick={ () => this.props.voteUp(res._id, 1) }
+                onClick={ () => this.props.voteUp(res.resId, 1) }
                 type="button"
                 className="btn btn-success btn-lg btn-block">
                 <i className="fa fa-thumbs-up" aria-hidden="true"></i> ({ this.props.voteUpCount })
@@ -58,7 +58,7 @@ class Home extends Component {
 
               <button
                 disabled={ this.props.votingDown }
-                onClick={ () => this.props.voteDown(res._id, 1) }
+                onClick={ () => this.props.voteDown(res.resId, 1) }
                 type="button"
                 className="btn btn-danger btn-lg btn-block">
                 <i className="fa fa-thumbs-down" aria-hidden="true"></i> ({ this.props.voteDownCount })
