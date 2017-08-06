@@ -77,8 +77,8 @@ export function voteUpCount(state = 0, action) {
   switch (action.type) {
     case VOTE_UP_COUNT:
       //test
-      console.log('-- reducer --');
-      console.log(action);
+      //console.log('-- reducer --');
+      //console.log(action);
       return action.voteUpCount;
     default:
       //

@@ -171,11 +171,9 @@ export function getARestaurantWithToken() {
       .then((response) => response.json()) // now we get response
       .then((res) => {
         //console.log('-- res --');
-        //console.log(res);
+        //console.log(res.restaurants);
         dispatch(getAllResGood(res));
-        // It is a single restaurant
-        const currVoteUpCount = res.voteUpCount;
-        dispatch(voteUpCount(currVoteUpCount));
+        dispatch(voteUpCount(res.restaurants.voteUpCount));
       })
       .catch((err) => {
         console.log('-- fetch error --');

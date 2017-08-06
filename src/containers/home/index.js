@@ -1,10 +1,5 @@
 // react
 import React, { Component } from 'react';
-// push in naviate inside the store
-//import { push } from 'react-router-redux';
-// bind action creators is like dispatching
-import { } from 'redux';
-
 // connect, normally conenct attributes and methods.
 import { connect } from 'react-redux';
 
@@ -57,14 +52,14 @@ class Home extends Component {
                 onClick={ () => this.props.voteUp(res._id, 1) }
                 type="button"
                 className="btn btn-success btn-lg btn-block">
-                Up ({ this.props.voteUpCount })
+                <i className="fa fa-thumbs-up" aria-hidden="true"></i> ({ this.props.voteUpCount })
               </button>
 
               <button
                 onClick={ this.props.voteDown }
                 type="button"
                 className="btn btn-danger btn-lg btn-block">
-                Down (4)
+                <i className="fa fa-thumbs-down" aria-hidden="true"></i> (4)
               </button>
             </div>
             <div className="card-footer text-center">
