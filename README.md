@@ -1,5 +1,7 @@
 # Intro
 
+Hire me at [https://au.linkedin.com/in/thegaryliang](https://au.linkedin.com/in/thegaryliang)
+
 It is a restaurant rotator in Melbourne Australia, based on Zomato API. You can vote up and down for a restaurant. Press 'Next' to move to next restaurant.
 
 ![alt img](https://github.com/kenpeter/melresfront/raw/master/misc/pic.png)
