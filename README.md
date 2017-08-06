@@ -2,6 +2,8 @@
 
 It is a restaurant rotator in Melbourne Australia, based on Zomato API. You can vote up and down for a restaurant. Press 'Next' to move to next restaurant.
 
+![alt img](https://github.com/kenpeter/melresfront/raw/master/misc/pic.png)
+
 There are 3 repositories:
 
 [Front end](https://github.com/kenpeter/melresfront)
