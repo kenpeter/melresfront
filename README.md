@@ -1,5 +1,7 @@
 # Intro
 
+It is a restaurant rotator in Melbourne, based on Zomato API.
+
 There are 3 repositories:
 
 [Front end](https://github.com/kenpeter/melresfront)
@@ -7,6 +9,7 @@ There are 3 repositories:
 [Back end](https://github.com/kenpeter/melresback)
 
 [Get data from API](https://github.com/kenpeter/melres)
+
 
 
 # Front-end
